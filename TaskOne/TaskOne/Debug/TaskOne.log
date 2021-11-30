@@ -1,0 +1,12 @@
+﻿  DinamArray.cpp
+  stdafx.cpp
+  TaskOne.cpp
+d:\программы c++\taskone\taskone\taskone.cpp(98): warning C4101: e: неиспользованная локальная переменная
+d:\программы c++\taskone\taskone\taskone.cpp(132): warning C4101: e: неиспользованная локальная переменная
+d:\программы c++\taskone\taskone\taskone.cpp(145): warning C4101: e: неиспользованная локальная переменная
+d:\программы c++\taskone\taskone\taskone.cpp(180): warning C4101: e: неиспользованная локальная переменная
+d:\программы c++\taskone\taskone\taskone.cpp(189): warning C4101: size: неиспользованная локальная переменная
+d:\программы c++\taskone\taskone\taskone.cpp(216): warning C4101: e: неиспользованная локальная переменная
+d:\программы c++\taskone\taskone\taskone.cpp(235): warning C4101: e: неиспользованная локальная переменная
+  Создание кода...
+  TaskOne.vcxproj -> D:\Программы c++\TaskOne\Debug\TaskOne.exe
