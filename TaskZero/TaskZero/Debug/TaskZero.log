@@ -1,0 +1,5 @@
+﻿  container.cpp
+d:\плюсы\taskzero\taskzero\taskzero\container.cpp(36): warning C4018: <: несоответствие типов со знаком и без знака
+d:\плюсы\taskzero\taskzero\taskzero\container.cpp(54): warning C4018: <: несоответствие типов со знаком и без знака
+d:\плюсы\taskzero\taskzero\taskzero\container.cpp(62): warning C4018: >=: несоответствие типов со знаком и без знака
+  TaskZero.vcxproj -> D:\Плюсы\TaskZero\TaskZero\Debug\TaskZero.exe
