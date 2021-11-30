@@ -1,0 +1,6 @@
+﻿D:\Visual Studio\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(391,5): warning MSB8028: промежуточный каталог (x64\Debug\) содержит файлы, которые используются совместно с другим проектом (Sindy_M4.vcxproj).  Это может привести к ошибкам очистки и перестроения.
+  stdafx.cpp
+  BinarIntegerTree.cpp
+  TaskFour.cpp
+  Создание кода...
+  TaskFour.vcxproj -> D:\Плюсы\TaskFour\x64\Debug\TaskFour.exe
