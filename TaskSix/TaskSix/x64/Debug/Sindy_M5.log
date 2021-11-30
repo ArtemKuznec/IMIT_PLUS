@@ -1,0 +1,4 @@
+﻿  TreeDictionary.cpp
+d:\плюсы\tasksix\sindy_m5\treedictionary.cpp(57): warning C4715: TreeDictionary::findWord: значение возвращается не при всех путях выполнения
+d:\плюсы\tasksix\sindy_m5\treedictionary.cpp(153): warning C4715: TreeDictionary::operator=: значение возвращается не при всех путях выполнения
+  Sindy_M5.vcxproj -> D:\Плюсы\TaskSix\x64\Debug\Sindy_M5.exe
