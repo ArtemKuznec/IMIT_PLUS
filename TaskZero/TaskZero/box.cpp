@@ -22,15 +22,15 @@ namespace ContBox {
 	}
 
 
-	Box::Box(int l, int wi, int h, double we, double v) {
-		if (l < 0 || wi < 0 || h < 0 || we < 0 || v < 0)
-			//throw invalid_argument(ERROR_INC_PAR);
-			cout << "error";
-		this->length = l;
-		this->width = wi;
-		this->height = h;
-		this->weight = we;
-		this->value = v;
+	Box::Box(int length, int width, int height, double weight, int value) {
+		if (length <= 0 || width <= 0 || height <= 0 || weight <= 0 || value <= 0) {
+			throw invalid_argument(ERROR_INC_PAR);
+		}
+		this->length = length;
+		this->width = width;
+		this->height = height;
+		this->weight = weight;
+		this->value = value;
 	}
 
 
@@ -40,7 +40,7 @@ namespace ContBox {
 
 
 	void Box::setLength(int newLength) {
-		if (newLength < 0)
+		if (newLength <= 0)
 			throw invalid_argument(ERROR_LESS_THAN_ZERO);
 		Box::length = newLength;
 	}
@@ -52,7 +52,7 @@ namespace ContBox {
 
 
 	void Box::setWidth(int newWidth) {
-		if (newWidth < 0)
+		if (newWidth <= 0)
 			throw invalid_argument(ERROR_LESS_THAN_ZERO);
 		Box::width = newWidth;
 	}
@@ -64,7 +64,7 @@ namespace ContBox {
 
 
 	void Box::setHeight(int newHeight) {
-		if (newHeight < 0)
+		if (newHeight <= 0)
 			throw invalid_argument(ERROR_LESS_THAN_ZERO);
 		Box::height = newHeight;
 	}
@@ -76,7 +76,7 @@ namespace ContBox {
 
 
 	void Box::setWeight(double newWeight) {
-		if (newWeight < 0)
+		if (newWeight <= 0)
 			throw invalid_argument(ERROR_LESS_THAN_ZERO);
 		Box::weight = newWeight;
 	}
@@ -88,12 +88,11 @@ namespace ContBox {
 
 
 	void Box::setValue(long newValue) {
-		if (newValue < 0)
+		if (newValue <= 0)
 			throw invalid_argument(ERROR_LESS_THAN_ZERO);
 		Box::value = newValue;
 	}
 
-	// Сумма стоимости коробок
 	long sumValue(Box * arr, int len) {
 		long outValue = 0;
 		for (int i = 0; i < len; i++) {
@@ -102,7 +101,6 @@ namespace ContBox {
 		return outValue;
 	}
 
-	// проверка, что сумма длины, ширины и высоты всех коробок	не превосходит maxV
 	bool isLessMaxDim(Box * arr, int len, int maxV) {
 		for (int i = 0; i < len; i++) {
 			if (arr[i].length +
@@ -113,7 +111,6 @@ namespace ContBox {
 		return true;
 	}
 
-	// поиск максимального веса коробок, объём которых не превышает maxV
 	double maxWeightDimLess(Box * arr, int len, int maxV) {
 		double maxWeight = 0;
 		for (int i = 0; i < len; i++) {
@@ -126,7 +123,6 @@ namespace ContBox {
 		return maxWeight;
 	}
 
-	// Компаратор для putEachOther
 	bool boxDimComparator(const Box & b1, const Box & b2, bool (*f)(int, int)) {
 		return (f(b1.length, b2.length) && f(b1.width, b2.width) && f(b1.height, b2.height)) ||
 			(f(b1.length, b2.width) && f(b1.width, b2.height) && f(b1.height, b2.length)) ||
@@ -154,8 +150,7 @@ namespace ContBox {
 		return x == y;
 	}
 
-	// Проверка на возможность вложения коробок друг в друга
-	Box* putEachOther(Box * arr, int len) {
+	Box* putEachOther(Box * arr, int len) { //
 		Box* finalArr = new Box[len];
 		finalArr[0] = Box(arr[0]);
 		bool isPut = false;

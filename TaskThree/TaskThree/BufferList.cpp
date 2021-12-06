@@ -12,20 +12,22 @@ BufferList::BufferList()
 
 BufferList::BufferList(const BufferList & copy)
 {
-	size = copy.size;
-	head = new Node(0);
-	head->next = head;
-	head->prev = head;
-	Node* countCopy = copy.head->next;
-	Node* temp = head;
-	for (int i = 1; i < size; i++) {
-		temp->next = new Node(countCopy->data);
-		temp->next->prev = head;
-		temp = temp->next;
-		countCopy = countCopy->next;
+	if (this != &copy) {
+		size = copy.size;
+		head = new Node(0);
+		head->next = head;
+		head->prev = head;
+		Node* countCopy = copy.head->next;
+		Node* temp = head;
+		for (int i = 1; i < size; i++) {
+			temp->next = new Node(countCopy->data);
+			temp->next->prev = head;
+			temp = temp->next;
+			countCopy = countCopy->next;
+		}
+		temp->next = head;
+		head->prev = temp;
 	}
-	temp->next = head;
-	head->prev = temp;
 }
 
 BufferList::BufferList(BufferList && copy)
@@ -81,7 +83,7 @@ void BufferList::ListIterator::start()
 	nowPointer = list->head;
 }
 
-TElem BufferList::ListIterator::getElement() const
+elem_t BufferList::ListIterator::getElement() const
 {
 	if (nowPointer == list->head) {
 		throw BufferException();
@@ -113,7 +115,7 @@ Node * BufferList::ListIterator::getNow() const
 }
 
 
-void BufferList::addElem(const TElem & elem, Iterator & iter)
+void BufferList::addElem(const elem_t & elem, Iterator & iter)
 {
 	size++;
 	Node *tempNode = new Node(elem, iter.getNow()->next, iter.getNow());
@@ -160,7 +162,7 @@ int BufferList::getSize() const
 	return size;
 }
 
-Iterator * BufferList::findElem(const TElem & elem)
+Iterator * BufferList::findElem(const elem_t & elem)
 {
 	ListIterator* listIterator = new ListIterator(this);
 	listIterator->next();

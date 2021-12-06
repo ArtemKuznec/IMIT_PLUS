@@ -1,9 +1,2 @@
-﻿  box.cpp
-d:\программы c++\taskzero\taskzero\box.cpp(86): warning C4244: return: преобразование "const double" в "long", возможна потеря данных
-d:\программы c++\taskzero\taskzero\box.cpp(100): warning C4244: +=: преобразование "double" в "long", возможна потеря данных
-  container.cpp
-d:\программы c++\taskzero\taskzero\container.cpp(11): warning C4267: return: преобразование из "size_t" в "unsigned int"; возможна потеря данных
-  stdafx.cpp
-  TaskZero.cpp
-  Создание кода...
+﻿  TaskZero.cpp
   TaskZero.vcxproj -> D:\Программы c++\TaskZero\x64\Debug\TaskZero.exe

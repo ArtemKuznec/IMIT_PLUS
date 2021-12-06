@@ -1,7 +1,27 @@
 #include "stdafx.h"
 #include "TreeDictionary.h"
 
-//конструктор узла
+TreeDictionary::TreeDictionary()
+{
+	root = nullptr;
+	size = 0;
+}
+
+TreeDictionary::TreeDictionary(const TreeDictionary & copy)
+{
+	if (copy.root == nullptr) {
+		return;
+	}
+		copyTree(root, copy.root);
+		size = copy.size;
+}
+
+TreeDictionary::TreeDictionary(TreeDictionary && move)
+{
+	size = move.size;
+	std::swap(root, move.root);
+}
+
 Node::Node(std::string word, unsigned int frequency, int bal, Node * right, Node * left)
 {
 	this->word = word;
@@ -33,7 +53,7 @@ void TreeDictionary::copyTree(Node * root, Node * copy)
 	copyTree(root->right, copy->right);
 }
 
-//удаление дерева
+
 void TreeDictionary::deleteTree(Node * root)
 {
 	if (!root) {
@@ -44,10 +64,10 @@ void TreeDictionary::deleteTree(Node * root)
 	delete root;
 }
 
-//найти слово, результат количество вхождений
 unsigned int TreeDictionary::findWord(Node * root, std::string word)
 {
-	if (!root) { return 0; }
+	if (!root) { 
+		return 0; }
 	if (root->word.compare(word) == 0) {
 		return root->frequency;
 	}
@@ -78,7 +98,7 @@ void TreeDictionary::addWord(Node *& root, std::string &word)
 	}
 }
 
-//удаление слова
+
 void TreeDictionary::deleteWord(Node *& root, std::string& word)
 {
 	if (!root) {
@@ -121,33 +141,13 @@ void TreeDictionary::printTree(std::ostream & os, Node * root)
 	printTree(os, root->right);
 }
 
-
-TreeDictionary::TreeDictionary()
-{
-	root = nullptr;
-	size = 0;
-}
-
-TreeDictionary::TreeDictionary(const TreeDictionary & copy)
-{
-	copyTree(root, copy.root);
-	size = copy.size;
-}
-
-TreeDictionary::TreeDictionary(TreeDictionary && move)
-{
-	size = move.size;
-	std::swap(root, move.root);
-}
-
-
 TreeDictionary::~TreeDictionary()
 {
 	size = 0;
 	deleteTree(root);
 }
 
-//оператор присваивания 
+
 TreeDictionary & TreeDictionary::operator=(const TreeDictionary & copy)
 {
 	if (this == &copy) {
@@ -159,7 +159,7 @@ TreeDictionary & TreeDictionary::operator=(const TreeDictionary & copy)
 	copyTree(root, copy.root);
 }
 
-//оператор перемещения
+
 TreeDictionary & TreeDictionary::operator=(TreeDictionary && move)
 {
 	size = move.size;

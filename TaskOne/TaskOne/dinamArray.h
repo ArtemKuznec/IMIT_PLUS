@@ -25,7 +25,7 @@ class DinamArray {
 		DinamArray(int size, int reserv, int n);
 		~DinamArray();
 		int length();
-		int operator [] (int i);
+		int& operator [] (int i);
 		DinamArray& operator = (const DinamArray& obj);
 		DinamArray& operator = (DinamArray&& obj);
 		void resize(int newSize);

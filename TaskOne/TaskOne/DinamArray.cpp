@@ -1,4 +1,3 @@
-
 #include "stdafx.h"
 #include "iostream"
 #include "dinamArray.h"
@@ -11,14 +10,12 @@ using std::cin;
 using std::cout;
 using std::endl;
 
-
 struct BadArrayLengthException {};
 struct EndOfReservException {};
 struct EndSizeOfArrayException {};
 struct BadIndexException {};
 struct BadSizeException {};
 struct BadReservException {};
-
 
 
 DinamArray::DinamArray() {
@@ -43,24 +40,28 @@ DinamArray::DinamArray(int size, int n) {
 }
 
 DinamArray::DinamArray(const DinamArray &copy) {
-	this->arr = new int[copy.size];
-	this->size = copy.size;
-	for (int i = 0; i < copy.size; i++) {
-		arr[i] = copy.arr[i];
+	if (*this != copy) {
+		this->arr = new int[copy.size];
+		this->size = copy.size;
+		for (int i = 0; i < copy.size; i++) {
+			arr[i] = copy.arr[i];
+		}
+		reserv = 0;
 	}
-	reserv = 0;
 }
 
 DinamArray::DinamArray(DinamArray &&copy) {
-	this->arr = new int[copy.size];
-	this->size = copy.size;
-	for (int i = 0; i < copy.size; i++) {
-		arr[i] = copy.arr[i];
+	if (*this != copy) {
+		this->arr = new int[copy.size];
+		this->size = copy.size;
+		for (int i = 0; i < copy.size; i++) {
+			arr[i] = copy.arr[i];
+		}
+		copy.size = 15;
+		delete[] copy.arr;
+		copy.arr = new int[15];
+		reserv = 0;
 	}
-	copy.size = 15;
-	delete[] copy.arr;
-	copy.arr = new int[15];
-	reserv = 0;
 }
 
 DinamArray::DinamArray(int size, int reserv, int n) {
@@ -82,8 +83,8 @@ int DinamArray::length() {
 	return size;
 }
 
-int DinamArray::operator [] (int i) {
-	if (i >= this->size) {
+int& DinamArray::operator [] (int i) {
+	if (i >= this->size || i < 0) {
 		throw BadIndexException();
 	}
 	return arr[i];

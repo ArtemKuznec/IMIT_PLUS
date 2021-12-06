@@ -2,8 +2,14 @@
 #include "stdafx.h"
 
 namespace ContBox {
-	Container::Container(int length, int width, int height, double maxWeight) :
-		length(length), width(width), height(height), maxWeight(maxWeight) {
+	Container::Container(int length, int width, int height, double maxWeight) {
+		if (length <= 0 || width <= 0 || height <= 0 || maxWeight <= 0) {
+			throw invalid_argument(ERROR_INC_PAR);
+		}
+		this->length = length;
+		this->width = width;
+		this->height = height;
+		this->maxWeight = maxWeight;
 		curWeight = 0;
 	}
 

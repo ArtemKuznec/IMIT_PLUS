@@ -1,0 +1,6 @@
+﻿  TaskFour.cpp
+  HashTable.cpp
+  stdafx.cpp
+  Создание кода...
+d:\плюсы\taskfour\taskfour\hashtable.cpp(58): warning C4715: HashTable::checkElem: значение возвращается не при всех путях выполнения
+  TaskFour.vcxproj -> D:\Плюсы\TaskFour\x64\Debug\TaskFour.exe

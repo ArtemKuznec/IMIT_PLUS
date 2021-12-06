@@ -5,11 +5,11 @@ using namespace std;
 namespace ContBox {
 
 	struct BoxStruct {
-		int length = 0;           // длина
-		int width = 0;            // ширина
-		int height = 0;           // высота
-		double weight = 0.0;      // вес
-		double value = 0;         // цена (в коп.)
+		int length = 0;           
+		int width = 0;            
+		int height = 0;           
+		double weight = 0.0;      
+		int value = 0;         
 
 		BoxStruct() {
 			BoxStruct(0, 0, 0, 0, 0);
@@ -19,7 +19,7 @@ namespace ContBox {
 			BoxStruct(box.length, box.width, box.height, box.weight, box.value);
 		}
 
-		BoxStruct(int l, int wi, int h, double we, double v) {
+		BoxStruct(int l, int wi, int h, double we, int v) {
 			length = l;
 			width = wi;
 			height = h;
@@ -30,19 +30,19 @@ namespace ContBox {
 
 	class Box {
 	private:
-		int length = 0;           // длина
-		int width = 0;            // ширина
-		int height = 0;           // высота
-		double weight = 0.0;      // вес
-		double value = 0;         // цена (в коп.)
+		int length = 0;          
+		int width = 0;            
+		int height = 0;           
+		double weight = 0.0;      
+		int value = 0;
 
-		const char* ERROR_LESS_THAN_ZERO = "«начение не может быть меньше нул€";
+		const char* ERROR_LESS_THAN_ZERO = "не может быть меньше нул€";
 		const char* ERROR_INC_PAR = "Ќеправильно заданы значени€ параметров";
 
 	public:
 		Box();
 		Box(Box const& b);
-		Box(int l, int wi, int h, double we, double v);
+		Box(int l, int wi, int h, double we, int v);
 		int getLength() const;
 		void setLength(int length);
 		int getWidth() const;
@@ -53,14 +53,14 @@ namespace ContBox {
 		void setWeight(double weight);
 		long getValue() const;
 		void setValue(long value);
-		friend long sumValue(Box* arr, int len);  // сумма стоимости коробок
-		friend bool isLessMaxDim(Box* arr, int len, int maxV);  // проверка, что сумма длины, ширины и высоты всех коробок не превосходит maxV
-		friend double maxWeightDimLess(Box* arr, int len, int maxV);  // поиск максимального веса коробок, объЄм которых не превышает maxV
-		friend bool boxDimComparator(const Box& b1, const Box& b2, bool (*f)(int, int)); //  омпаратор дл€ putEachOther
-		friend istream& operator>>(istream& in, Box& box); // ѕерегрузка оператора ввода
-		friend ostream& operator<<(ostream& out, const Box& box); // ѕерегрузка оператора вывода
-		friend bool operator==(const Box& b1, const Box& b2); // ѕерегрузка оператора сравнени€
+		friend long sumValue(Box* arr, int len);											
+		friend bool isLessMaxDim(Box* arr, int len, int maxV);								
+		friend double maxWeightDimLess(Box* arr, int len, int maxV);						
+		friend bool boxDimComparator(const Box& b1, const Box& b2, bool (*f)(int, int));	
+		friend istream& operator>>(istream& in, Box& box);									
+		friend ostream& operator<<(ostream& out, const Box& box);							
+		friend bool operator==(const Box& b1, const Box& b2);								
 	};
 
-	Box* putEachOther(Box* arr, int len);  // ѕроверка на возможность вложени€ коробок друг в друга
+	Box* putEachOther(Box* arr, int len);													
 }

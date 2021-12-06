@@ -3,6 +3,8 @@
 #include "iostream"
 #include "string"
 
+//struct NoRootException{};
+
 
 //узлы дерева
 struct Node {

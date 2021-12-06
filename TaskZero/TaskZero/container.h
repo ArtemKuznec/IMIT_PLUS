@@ -7,12 +7,13 @@ using namespace std;
 namespace ContBox {
 	class Container {
 	private:
-		vector<Box> set; // массив коробок
+		vector<Box> set; 
 		int length;
 		int width;
 		int height;
-		double maxWeight; // Максимально допустимый вес
-		double curWeight; // Текущий вес
+		double maxWeight;    
+		double curWeight;
+		const char* ERROR_INC_PAR = "Неправильно заданы значения параметров при создании контейнера";
 		const char* ERROR_ADD = "Ошибка при добавлении коробки";
 		const char* ERROR_INDEX = "Отсутствует коробка с данным индексом";
 

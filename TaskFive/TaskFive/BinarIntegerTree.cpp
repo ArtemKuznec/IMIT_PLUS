@@ -2,6 +2,7 @@
 #include "stdafx.h"
 #include "BinarIntegerTree.h"
 
+
 Node::Node(int info, Node * left, Node * right)
 {
 	this->info = info;
@@ -12,7 +13,7 @@ Node::Node(int info, Node * left, Node * right)
 void BinarIntegerTree::copyTree(Node* root, Node* copy)
 {
 	if (!copy) {
-		return;
+		throw NoRootException();
 	}
 	root = new Node(copy->info);
 	copyTree(root->left, copy->left);
@@ -22,26 +23,26 @@ void BinarIntegerTree::copyTree(Node* root, Node* copy)
 void BinarIntegerTree::deleteTree(Node* root)
 {
 	if (!root) {
-		return;
+		throw NoRootException();
 	}
+	
 	deleteTree(root->left);
 	deleteTree(root->right);
+
 	if ((!root->left) && (!root->right)) {
 		delete root;
 	}
 }
 
-void BinarIntegerTree::printTree(std::ostream & os, Node* root, int counter)
+void BinarIntegerTree::printTree(std::ostream & os, Node* root)
 {
 	if (!root) {
 		return;
 	}
-	for (int i = 0; i < counter; i++) {
-		os << "\t";
-	}
-	os << root->info <<std::endl;
-	printTree(os, root->left, counter+1);
-	printTree(os, root->right, counter+1);
+
+	os << root->info << " ";
+	printTree(os, root->left);
+	printTree(os, root->right);
 }
 
 int BinarIntegerTree::getEvenCount(Node * root)
@@ -94,6 +95,7 @@ double BinarIntegerTree::getSum(Node * root)
 bool BinarIntegerTree::findElem(Node * root, int x, std::vector<int> &path)
 {
 	if (!root) { return false; }
+
 	if (root->info == x) {
 		return true;
 	}
@@ -105,42 +107,6 @@ bool BinarIntegerTree::findElem(Node * root, int x, std::vector<int> &path)
 	path.pop_back();
 	return false;
 }
-
-bool BinarIntegerTree::checkBinaryFindTree(Node * root, int min, int max)
-{
-	if (!root) { return true; }
-	if (root->info < min || root->info > max) {
-		return false;
-	}
-	if (root->info == min && root->left && this->root->info == root->info) {
-		return false;
-	}
-	if (root->info == max && root->right && this->root->info == root->info) {
-		return false;
-	}
-	return checkBinaryFindTree(root->left, min, root->info) && checkBinaryFindTree(root->right, root->info, max);
-}
-
-void BinarIntegerTree::findMin(Node * root, int & min)
-{
-	if (!root) { return; }
-	if (root->info < min) {
-		min = root->info;
-	}
-	findMin(root->left, min);
-	findMin(root->right, min);
-}
-
-void BinarIntegerTree::findMax(Node * root, int & max)
-{
-	if (!root) { return; }
-	if (root->info > max) {
-		max = root->info;
-	}
-	findMax(root->left, max);
-	findMax(root->right, max);
-}
-
 
 
 
@@ -176,6 +142,9 @@ BinarIntegerTree::BinarIntegerTree(BinarIntegerTree &&move)
 
 BinarIntegerTree::~BinarIntegerTree()
 {
+	if (!root) {
+		throw NoRootException();
+	}
 	deleteTree(root);
 }
 
@@ -263,14 +232,6 @@ double BinarIntegerTree::getMiddle()
 	return getSum(root)/size;
 }
 
-bool BinarIntegerTree::checkBinaryFindTree()
-{
-	int max = INT_MIN, min = INT_MAX;
-	findMin(root->left, min);
-	findMax(root->right, max);
-	return checkBinaryFindTree(root, min, max);
-}
-
 std::vector<int> BinarIntegerTree::findElem(int x)
 {
 	std::vector<int> path = {};
@@ -282,6 +243,6 @@ std::vector<int> BinarIntegerTree::findElem(int x)
 
 std::ostream & operator<<(std::ostream & os, BinarIntegerTree &obj)
 {
-	obj.printTree(os, obj.root, 0);
+	obj.printTree(os, obj.root);
 	return os;
 }

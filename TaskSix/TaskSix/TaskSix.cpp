@@ -1,10 +1,11 @@
 #include "stdafx.h"
 #include "TreeDictionary.h"
 
+
 int main()
 {
-
 	setlocale(LC_ALL, "ru");
+
 	TreeDictionary *tree = new TreeDictionary();
 	std::cout << "__________________________________" << std::endl;
 	tree->addWord("Артем");

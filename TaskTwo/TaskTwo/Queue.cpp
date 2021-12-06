@@ -19,14 +19,16 @@ Queue::Queue(int size) {
 }
 
 Queue::Queue(const Queue& copy) {
-	this->head = copy.head;
-	this->tail = copy.tail;
-	this->size = copy.size;
-	this->queue = new int[copy.size];
-	for (int i = 0; i < copy.size; i++) {
-		this->queue[i] = copy.queue[i];
+	if (this != &copy) {
+		this->head = copy.head;
+		this->tail = copy.tail;
+		this->size = copy.size;
+		this->queue = new int[copy.size];
+		for (int i = 0; i < copy.size; i++) {
+			this->queue[i] = copy.queue[i];
+		}
+		this->empty = copy.empty;
 	}
-	this->empty = copy.empty;
 }
 
 Queue::~Queue() {

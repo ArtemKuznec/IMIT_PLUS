@@ -11,6 +11,7 @@ struct Node {
 
 struct BadPathException {};
 struct NoElemException {};
+struct NoRootException {};
 
 class BinarIntegerTree
 {
@@ -19,15 +20,12 @@ private:
 	int size;
 	void copyTree(Node* root, Node* copy);
 	void deleteTree(Node* root);
-	void printTree(std::ostream& os, Node* root, int counter);
+	void printTree(std::ostream& os, Node* root);
 	int getEvenCount(Node* root);
 	bool checkPositive(Node* root);
 	bool deleteAllLeafs(Node* root);
 	double getSum(Node* root);
 	bool findElem(Node* root, int x, std::vector<int> &patn);
-	bool checkBinaryFindTree(Node* root, int min, int max);
-	void findMin(Node *root, int &min);
-	void findMax(Node *root, int &max);
 public:
 	BinarIntegerTree();
 	BinarIntegerTree(int x);
@@ -42,7 +40,6 @@ public:
 	bool checkPositive();
 	void deleteAllLeafs();
 	double getMiddle();
-	bool checkBinaryFindTree();
 	std::vector<int> findElem(int x);
 };
 

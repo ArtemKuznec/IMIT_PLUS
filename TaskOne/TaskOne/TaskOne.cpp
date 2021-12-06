@@ -19,14 +19,13 @@ struct BadSizeException {};
 struct BadReservException {};
 
 
-
 int main()
 {
 	setlocale(LC_ALL, "ru");
 	int status = 0;
 	int numArr = 0;
 
-	DinamArray arr1(10, 5);
+	DinamArray arr1(5, 8);
 	DinamArray arr2 = DinamArray(5);
 	DinamArray arr3;
 	while (status != -1) {
@@ -82,25 +81,40 @@ int main()
 			system("cls");
 		}
 		if (status == 4) {
-			int i = 0;
+			int i = 0, num;
 			cout << "С каким массивом работаем?(1/2)" << endl;
 			cin >> numArr;
-			cout << "Какой элемент вывести?" << endl;
+			cout << "Какой элемент вытащить?" << endl;
 			cin >> i;
-			try {
+		
+			try {//добавлено 01.12
 				if (numArr == 1) {
-					cout << arr1[i];
+					cout << "array1[" << i << "]" << " = " << arr1[i] << endl;
+					cout << "Введите число, чтобы изменить значение элемента" << endl;
+					cin >> num;
+					arr1[i] = num;
+					cout << "array1[" << i << "]" << " = " << arr1[i] << endl;
 				}
 				if (numArr == 2) {
-					cout << arr2[i];
+					cout << "array2[" << i << "]" << " = " << arr1[i] << endl;
+					cout << "Введите число, чтобы изменить значение элемента" << endl;
+					cin >> num;
+					arr2[i] = num;
+					cout << "array2[" << i << "]" << " = " << arr1[i] << endl;
 				}
 			}
 			catch (BadIndexException e) {
 				std::cerr << "Выход заграницы массива!" << endl;
 			}
+
+		
+
 			status = 0;
 			_getch();
 			system("cls");
+
+
+			
 		}
 		if (status == 5) {
 			cout << "Какой массив приравнять?(1/2)" << endl;
@@ -222,7 +236,7 @@ int main()
 			system("cls");
 		}
 		if (status == 12) {
-			cout << "Из какого массива хотите вытащить элемент?(1/2)" << endl;
+			cout << "Из какого массива взять элемент?(1/2)" << endl;
 			cin >> numArr;
 			try {
 				if (numArr == 1) {
